@@ -5,6 +5,7 @@ import java.util.Iterator;
 public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<E>
 {
     private int size;
+    private int mark = 0;
     private ArrayList<E> ring = new ArrayList(size);
 
     public CircularArrayRing() { }
@@ -16,21 +17,42 @@ public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<
 
     public boolean add(E e)
     {
-        ring.add(e);
+        if (mark >= size)
+        {
+            mark = 0;
+        }
+
+        if (mark < ring.size())
+        {
+            ring.remove(mark);
+        }
+
+        ring.add(mark, e);
+        mark++;
+        return true;
     }
 
     public E get(int index) throws IndexOutOfBoundsException
     {
-        ring.get(index);
+        int realIndex = size - index - 1;
+
+        if (realIndex >= size || realIndex < 0)
+        {
+            throw new IndexOutOfBoundsException();
+        }
+        else
+        {
+            return ring.get(size - index);
+        }
     }
 
     public Iterator<E> iterator()
     {
-
+        return ring.iterator();
     }
 
     public int size()
     {
-
+        return ring.size();
     }
 }
