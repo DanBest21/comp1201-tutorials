@@ -38,13 +38,17 @@ public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<
         if (size() < capacity)
         {
             mark++;
-            return ring.add(e);
+            ring.add(e);
+
+            // Return false if a value was not overridden.
+            return false;
         }
 
         // Otherwise, replace the element corresponding to the mark index with the passed 'e' argument.
         ring.set(mark, e);
         mark++;
 
+        // Return true if a value was overridden.
         return true;
     }
 
