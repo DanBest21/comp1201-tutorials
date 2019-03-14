@@ -1,7 +1,4 @@
-import java.util.AbstractCollection;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<E>
 {
@@ -9,20 +6,20 @@ public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<
 
     private int capacity;
     private int mark = 0;
-    private ArrayList<E> ring;
+    private List<E> ring;
 
     // Default constructor that sets the capacity of the initial ArrayList to the DEFAULT_SIZE constant.
     public CircularArrayRing()
     {
         capacity = DEFAULT_SIZE;
-        ring = new ArrayList(capacity);
+        ring = new ArrayList<>(capacity);
     }
 
     // Constructor that allows for an initial user-defined capacity.
     public CircularArrayRing(int capacity)
     {
         this.capacity = capacity;
-        ring = new ArrayList(capacity);
+        ring = new ArrayList<>(capacity);
     }
 
     // Method that adds an element to the ring, replacing an existing one if the ring is already full.
@@ -79,7 +76,7 @@ public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<
     public Iterator<E> iterator()
     {
         // Anonymous inner class for the iterator.
-        return new Iterator()
+        return new Iterator<>()
         {
             private int index = 0;
 
