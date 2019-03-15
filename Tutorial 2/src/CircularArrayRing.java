@@ -76,7 +76,7 @@ public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<
     public Iterator<E> iterator()
     {
         // Anonymous inner class for the iterator.
-        return new Iterator<>()
+        return new Iterator<E>()
         {
             private int index = 0;
 
